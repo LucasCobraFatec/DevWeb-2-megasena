@@ -42,7 +42,7 @@ Certifique-se de ter o **Docker Desktop** instalado e rodando.
 
 1.  **Clone o projeto e entre na pasta:**
     ```bash
-    git clone (https://github.com/LucasCobraFatec/DevWeb-2-megasena.git)
+    git clone https://github.com/LucasCobraFatec/DevWeb-2-megasena.git
     cd projeto3
     ```
 
