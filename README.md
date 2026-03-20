@@ -1,4 +1,4 @@
-# 🍀 Mega-Sena Results - Full Stack Docker Project
+# 🍀 Mega-Sena Resultados - Full Stack Docker Project
 
 Este é um projeto **Full Stack** desenvolvido para a disciplina de Desenvolvimento de Sistemas Multiplataforma na **Fatec**. O sistema permite a visualização e busca de resultados históricos da Mega-Sena através de uma interface moderna e uma infraestrutura robusta.
 
