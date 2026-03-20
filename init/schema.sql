@@ -8,7 +8,7 @@ CREATE TABLE import_bruto (
 -- 2. Importa o arquivo sem considerar vírgulas como separador (usamos um caractere que não existe no texto)
 COPY import_bruto FROM '/megasena.csv' WITH (FORMAT text);
 
--- 3. Cria a tabela oficial
+-- 3. Tabela oficial sem a estimativa
 CREATE TABLE resultados (
     concurso INT,
     data_sorteio DATE,
@@ -20,20 +20,20 @@ CREATE TABLE resultados (
     bola6 INT
 );
 
--- 4. Agora sim, quebramos a linha e pegamos só o que importa
+-- 4. Inserção com limpeza de espaços (TRIM) para evitar erros de conversão
 INSERT INTO resultados
 SELECT 
-    split_part(linha, ',', 1)::INT,
-    to_date(split_part(linha, ',', 2), 'DD/MM/YYYY'),
-    split_part(linha, ',', 3)::INT,
-    split_part(linha, ',', 4)::INT,
-    split_part(linha, ',', 5)::INT,
-    split_part(linha, ',', 6)::INT,
-    split_part(linha, ',', 7)::INT,
-    split_part(linha, ',', 8)::INT
+    trim(split_part(linha, ',', 1))::INT,
+    to_date(trim(split_part(linha, ',', 2)), 'DD/MM/YYYY'),
+    trim(split_part(linha, ',', 3))::INT,
+    trim(split_part(linha, ',', 4))::INT,
+    trim(split_part(linha, ',', 5))::INT,
+    trim(split_part(linha, ',', 6))::INT,
+    trim(split_part(linha, ',', 7))::INT,
+    trim(split_part(linha, ',', 8))::INT
 FROM import_bruto
-WHERE linha ~ '^[0-9]' -- Garante que só pega linhas que começam com número (pula o cabeçalho)
-LIMIT 5000; -- Limite de segurança
+WHERE linha ~ '^[0-9]'
+LIMIT 5000;
 
 -- 5. Limpa a sujeira
 DROP TABLE import_bruto;

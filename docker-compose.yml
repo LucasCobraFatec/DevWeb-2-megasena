@@ -22,5 +22,17 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=${DB_NAME}
 
+  web:
+    build: ./web # Caminho para a pasta do seu React
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./web:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:3001 # Define a URL da API
+    depends_on:
+      - server
+
 
     
